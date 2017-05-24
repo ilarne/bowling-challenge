@@ -51,6 +51,8 @@ function renderGame(){
   frames.forEach(function (frame) {
     if (frame.first === 10) {
       renderedGame += "[X] "
+    } else if (frame.first + frame.second === 10) {
+      renderedGame += "["+frame.first+"|/] "
     } else {
       renderedGame += "["+frame.first+"|"+frame.second+"] "
     }
