@@ -25,15 +25,23 @@ function calculateScore() {
   frames.forEach(function (frame, i, frames) {
     var previousFrame = frames[i-1]
     var frameTotal = frame.first + frame.second
-    if (previousFrame && (previousFrame.first + previousFrame.second === 10)) {
-      frameTotal += frame.first
-    } else if (previousFrame && previousFrame.first === 10){
-    frameTotal *= 2
+    console.log(1)
+    if (previousFrame && previousFrame.first === 10){
+      console.log(2)
+      frameTotal *= 2
+      totalScore += frameTotal
+    }
+    if (previousFrame && (previousFrame.first + previousFrame.second) === 10){
+    frameTotal += frame.first
+    totalScore += frameTotal
+    console.log(3)
   } else {
     totalScore += frameTotal
-}
-  return totalScore;
- })
+    console.log(4)
+  }
+    console.log(totalScore);
+      return totalScore;
+});
 }
 
 function renderGame(){
@@ -44,11 +52,12 @@ function renderGame(){
     } else {
       renderedGame += "["+frame.first+"|"+frame.second+"] "
     }
+  })
   return renderedGame
-})
 }
 
-console.log(addScore(5,5))
-console.log(addScore(5,5))
-console.log(addScore(5,5))
-console.log(displayGame())
+addScore(5,5)
+addScore(5,5)
+addScore(5,5)
+addScore(10,0)
+displayGame()
