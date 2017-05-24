@@ -22,28 +22,29 @@ function displayGame() {
 
 function calculateScore() {
   var totalScore = 0
+  console.log('top totalScore'+ totalScore)
   frames.forEach(function (frame, i, frames) {
     var previousFrame = frames[i-1]
+    console.log('after loop'+ totalScore)
+    console.log("this is our initial previous frame: " +previousFrame)
     var frameTotal = frame.first + frame.second
-    if (isSpare(previousFrame)) {
-      frameTotal += frame.first
-    } else if (isStrike(previousFrame)) {
+    console.log("this is our initial frame total: " + frameTotal)
+    if (previousFrame && (previousFrame.first === 10)) {
       frameTotal *= 2
+      totalScore += frameTotal
+      console.log("executeisStrikeCondition")
+    } else if (previousFrame && previousFrame.first + previousFrame.second === 10) {
+        frameTotal += frame.first
+        totalScore += frameTotal
+      console.log("executeisSpareCondition")
     } else {
       totalScore += frameTotal
-    }
-  })
-  return totalScore
+  }
+})
+return totalScore
+console.log('last one'+ totalScore)
+console.log("just checking")
 }
-
-function isSpare(previousFrame) {
-  (previousFrame && (previousFrame.first + previousFrame.second === 10))
-}
-
-function isStrike(previousFrame) {
-  (previousFrame && previousFrame.first === 10)
-}
-
 
 function renderGame(){
   var renderedGame = ""
